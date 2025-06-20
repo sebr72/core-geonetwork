@@ -1,4 +1,4 @@
-name: CI
+name: "Build and Publish Packages"
 
 on:
   push:
@@ -22,13 +22,8 @@ jobs:
           java-package: jdk
           cache: maven
 
-      - name: "Build"
+      - name: "Publish package"
         run: |
-          mvn clean install -DskipTests
-
-      - name: Publish package
-        run: |
-          mvn -s settings.xml --batch-mode deploy -DskipTests -pl web -pl schemas
-          mvn -s settings.xml deploy:deploy-file -DpomFile=pom.xml -Dfile=./pom.xml -DgroupId=org.geonetwork-opensource -DartifactId=geonetwork -DrepositoryId=sebr72 -Durl=https://maven.pkg.github.com/sebr72/core-geonetwork/
+          mvn -s settings.xml --batch-mode clean install deploy -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
