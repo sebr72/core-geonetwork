@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - commits_to_report_upstream*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+
+      - name: "Checking out"
+        uses: actions/checkout@v4
+
+      - name: "Setup java JDK"
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: 11
+          distribution: temurin
+          java-package: jdk
+          cache: maven
+
+      - name: "Build"
+        run: |
+          mvn clean install -DskipTests
+
+      - name: Publish package
+        run: |
+          mvn -s settings.xml --batch-mode deploy -DskipTests -pl web -pl schemas
+          mvn -s settings.xml deploy:deploy-file -DpomFile=pom.xml -Dfile=./pom.xml -DgroupId=org.geonetwork-opensource -DartifactId=geonetwork -DrepositoryId=sebr72 -Durl=https://maven.pkg.github.com/sebr72/core-geonetwork/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
