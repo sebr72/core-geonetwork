@@ -1,0 +1,2105 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GeoNetwork catalogue for listing, searching and reviewing records.">
+      
+      
+      
+        <link rel="canonical" href="https://docs.geonetwork-opensource.org/4.4/api/rdf-dcat/">
+      
+      
+        <link rel="prev" href="../q-search/">
+      
+      
+        <link rel="next" href="../z39-50/">
+      
+      
+      <link rel="icon" href="../../assets/images/geonetwork-logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>RDF DCAT - GeoNetwork opensource</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rdf-dcat" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  GeoNetwork 4.4 is latest.
+  <a href="../../.."><strong>Click here to go to stable.</strong></a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL("../.."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://geonetwork-opensource.org/" title="GeoNetwork opensource" class="md-header__button md-logo" aria-label="GeoNetwork opensource" data-md-component="logo">
+      
+  <img src="../../assets/images/geonetwork-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoNetwork opensource
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RDF DCAT
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../fr/api/rdf-dcat/" hreflang="fr" class="md-select__link">
+              Français
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/geonetwork/core-geonetwork" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    core-geonetwork
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  GeoNetwork
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Overview
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../help/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Help
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../maintainer-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Maintainer Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../devel/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tutorials/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tutorials
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../annexes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Annexes
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geonetwork-opensource.org/" title="GeoNetwork opensource" class="md-nav__button md-logo" aria-label="GeoNetwork opensource" data-md-component="logo">
+      
+  <img src="../../assets/images/geonetwork-logo.svg" alt="logo">
+
+    </a>
+    GeoNetwork opensource
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/geonetwork/core-geonetwork" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    core-geonetwork
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GeoNetwork
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../overview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../help/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Help
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../user-guide/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../maintainer-guide/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Maintainer Guide
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../the-geonetwork-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GeoNetwork API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OGC Catalog Service (CSW)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inspire_atom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inspire atom
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oai-pmh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open Archive Initiative
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opensearch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OpenSearch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../q-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Q Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    RDF DCAT
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDF DCAT
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported-dcat-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported DCAT profiles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#past-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Past implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-in-the-formatters-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage in the formatters API
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-in-the-csw-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage in the CSW service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-in-ogc-api-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage in OGC API Records
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dcat-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      DCAT validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapping-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mapping considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mapping considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#items-under-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Items under discussion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Items under discussion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object-vs-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object vs Reference:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribution-model-in-dcat-and-iso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distribution model in DCAT and ISO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-equivalent-field-in-iso" class="md-nav__link">
+    <span class="md-ellipsis">
+      No equivalent field in ISO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#associated-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Associated resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eu-dcat-ap-high-value-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      EU DCAT AP High Value Datasets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eu-dcat-mobility" class="md-nav__link">
+    <span class="md-ellipsis">
+      EU DCAT mobility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semic-conversion-compared-to-geonetwork-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEMIC conversion compared to GeoNetwork conversion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z39-50/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Z39-50
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../devel/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../tutorials/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../annexes/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Annexes
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported-dcat-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported DCAT profiles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#past-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Past implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-in-the-formatters-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage in the formatters API
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-in-the-csw-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage in the CSW service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-in-ogc-api-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage in OGC API Records
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dcat-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      DCAT validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapping-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mapping considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mapping considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#items-under-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Items under discussion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Items under discussion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object-vs-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object vs Reference:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribution-model-in-dcat-and-iso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distribution model in DCAT and ISO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-equivalent-field-in-iso" class="md-nav__link">
+    <span class="md-ellipsis">
+      No equivalent field in ISO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#associated-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Associated resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eu-dcat-ap-high-value-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      EU DCAT AP High Value Datasets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eu-dcat-mobility" class="md-nav__link">
+    <span class="md-ellipsis">
+      EU DCAT mobility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semic-conversion-compared-to-geonetwork-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEMIC conversion compared to GeoNetwork conversion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/geonetwork/core-geonetwork/edit/main/docs/manual/docs/api/rdf-dcat.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/geonetwork/core-geonetwork/raw/main/docs/manual/docs/api/rdf-dcat.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="rdf-dcat">DCAT</h1>
+<p>The catalogue has the capability to convert ISO to DCAT format in various API endpoint. </p>
+<h2 id="supported-dcat-profiles">Supported DCAT profiles</h2>
+<p>A base conversion is provided with complementary extensions for various profiles of DCAT:</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Version</th>
+<th>Description</th>
+<th>URL</th>
+<th>Conversion from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W3C DCAT</td>
+<td>3</td>
+<td>Default W3C standard</td>
+<td>https://www.w3.org/TR/vocab-dcat-3/</td>
+<td>ISO19115-3</td>
+</tr>
+<tr>
+<td>European DCAT-AP</td>
+<td>3.0.0</td>
+<td>DCAT profile for sharing information about Catalogues containing Datasets and Data Services descriptions in Europe</td>
+<td>https://semiceu.github.io/DCAT-AP/releases/3.0.0/</td>
+<td>ISO19115-3</td>
+</tr>
+<tr>
+<td>European DCAT-AP-Mobility</td>
+<td>1.0.1</td>
+<td>mobilityDCAT-AP is a mobility-related extension of the DCAT-AP</td>
+<td>https://mobilitydcat-ap.github.io/mobilityDCAT-AP/releases/</td>
+<td>ISO19115-3</td>
+</tr>
+<tr>
+<td>European DCAT-AP-HVD</td>
+<td>2.2.0</td>
+<td>DCAT-AP for a dataset that is subject to the requirements imposed by the High-Value Dataset implementing regulation</td>
+<td>https://semiceu.github.io/DCAT-AP/releases/2.2.0-hvd/</td>
+<td>ISO19115-3</td>
+</tr>
+<tr>
+<td>European GeoDCAT-AP</td>
+<td>3.0.0</td>
+<td></td>
+<td>https://semiceu.github.io/GeoDCAT-AP/releases/3.0.0/</td>
+<td>ISO19115-3</td>
+</tr>
+<tr>
+<td>European GeoDCAT-AP (SEMIC)</td>
+<td>3.0.0</td>
+<td><a href="https://github.com/SEMICeu/iso-19139-to-dcat-ap/blob/main/iso-19139-to-dcat-ap.xsl">XSLT conversion maintained by SEMIC</a></td>
+<td>https://semiceu.github.io/GeoDCAT-AP/releases/3.0.0/</td>
+<td>ISO19139</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>The mapping is done from ISO19115-3 to DCAT* except for the SEMIC conversion which converts ISO19139 to GeoDCAT-AP. </p>
+</li>
+<li>
+<p>When needed, an ISO19139 to or from ISO19115-3 conversion is applied (eg. a CSW request querying a catalog in ISO19115-3 using the SEMIC conversion).</p>
+</li>
+<li>
+<p>DCAT output are not available for ISO19110 or Dublin core standards.</p>
+</li>
+</ul>
+<h2 id="past-implementation">Past implementation</h2>
+<p><a href="https://trac.osgeo.org/geonetwork/wiki/proposals/DCATandRDFServices">The first implementation of DCAT output was done in 2012</a> and was targeting interaction with semantic service and semantic sitemap support. DCAT output was available using a service named <code>rdf.search</code>. This service was deprecated in version 4.0.0 in favor of producing DCAT output in the <a href="../csw/">Catalog Service for the Web (CSW)</a> or using the formatters API.</p>
+<h2 id="usage-in-the-formatters-api">Usage in the formatters API</h2>
+<p>Each DCAT formats are available using a formatter eg. http://localhost:8080/geonetwork/srv/api/records/be44fe5a-65ca-4b70-9d29-ac5bf1f0ebc5/formatters/eu-dcat-ap</p>
+<p>To add the formatter in the record view download list, the user interface configuration can be updated:</p>
+<p><img alt="image" src="../img/dcat-in-download-menu.png" /></p>
+<p>User interface configuration: </p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;mods&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">&quot;downloadFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exportMEF&quot;</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/formatters/zip?withRelated=false&quot;</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">          </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fa-file-zip-o&quot;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exportPDF&quot;</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/formatters/xsl-view?output=pdf&amp;language=${lang}&quot;</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">          </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fa-file-pdf-o&quot;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exportXML&quot;</span><span class="p">,</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/formatters/xml&quot;</span><span class="p">,</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">          </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fa-file-code-o&quot;</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;W3C-DCAT&quot;</span><span class="p">,</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/formatters/dcat&quot;</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EU-DCAT-AP&quot;</span><span class="p">,</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/formatters/eu-dcat-ap&quot;</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EU-GEO-DCAT-AP&quot;</span><span class="p">,</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/formatters/eu-geodcat-ap&quot;</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EU-DCAT-AP-MOBILITY&quot;</span><span class="p">,</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/formatters/eu-dcat-ap-mobility&quot;</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EU-DCAT-AP-HVD&quot;</span><span class="p">,</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/formatters/eu-dcat-ap-hvd&quot;</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">      </span><span class="p">]</span>
+</span></code></pre></div>
+<h2 id="usage-in-the-csw-service">Usage in the CSW service</h2>
+<p>All DCAT profiles are also accessible using CSW protocol.</p>
+<p>A <code>GetRecordById</code> operation can be used: http://localhost:8080/geonetwork/srv/eng/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;ID=da165110-88fd-11da-a88f-000d939bc5d8&amp;outputSchema=https://semiceu.github.io/DCAT-AP/releases/2.2.0-hvd/ and is equivalent to the API http://localhost:8080/geonetwork/srv/api/records/da165110-88fd-11da-a88f-000d939bc5d8/formatters/eu-dcat-ap-hvd?output=xml.</p>
+<p>A <code>GetRecords</code> operation can be used to retrieve a set of records: http://localhost:8080/geonetwork/srv/fre/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecords&amp;outputSchema=http://data.europa.eu/930/&amp;elementSetName=full&amp;resultType=results&amp;maxRecords=300</p>
+<p>Use the <code>outputSchema</code> parameter to select the DCAT profile to use. The following values are supported:</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Output schema parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSW</td>
+<td>http://www.opengis.net/cat/csw/2.0.2</td>
+</tr>
+<tr>
+<td>ISO19115-3</td>
+<td>http://standards.iso.org/iso/19115/-3/mdb/2.0</td>
+</tr>
+<tr>
+<td>ISO19110</td>
+<td>http://www.isotc211.org/2005/gfc</td>
+</tr>
+<tr>
+<td>ISO19139</td>
+<td>http://www.isotc211.org/2005/gmd</td>
+</tr>
+<tr>
+<td>W3C DCAT</td>
+<td>http://www.w3.org/ns/dcat#core</td>
+</tr>
+<tr>
+<td>EU-DCAT-AP</td>
+<td>http://data.europa.eu/r5r/</td>
+</tr>
+<tr>
+<td>EU-GeoDCAT-AP</td>
+<td>http://data.europa.eu/930/</td>
+</tr>
+<tr>
+<td>EU-GeoDCAT-AP (SEMIC)</td>
+<td>http://data.europa.eu/930/#semiceu</td>
+</tr>
+<tr>
+<td>DCAT (past implementation - deprecated)</td>
+<td>http://www.w3.org/ns/dcat#</td>
+</tr>
+<tr>
+<td>EU-DCAT-AP-HVD</td>
+<td>https://semiceu.github.io/DCAT-AP/releases/2.2.0-hvd/</td>
+</tr>
+<tr>
+<td>EU-DCAT-AP-Mobility</td>
+<td>https://w3id.org/mobilitydcat-ap</td>
+</tr>
+</tbody>
+</table>
+<p>When using GET request, it is recommended to encode URL characters in parameters (eg. <code>#</code> as <code>%23</code>) to avoid issues with the URL.</p>
+<p>Those values are listed in the <code>GetCapabilities</code> operation http://localhost:8080/geonetwork/srv/eng/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetCapabilities.</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;ows:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputSchema&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>http://www.opengis.net/cat/csw/2.0.2<span class="nt">&lt;/ows:Value&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>http://standards.iso.org/iso/19115/-3/mdb/2.0<span class="nt">&lt;/ows:Value&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>http://www.isotc211.org/2005/gfc<span class="nt">&lt;/ows:Value&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>http://www.isotc211.org/2005/gmd<span class="nt">&lt;/ows:Value&gt;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>http://data.europa.eu/930/<span class="nt">&lt;/ows:Value&gt;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>http://data.europa.eu/930/#semiceu<span class="nt">&lt;/ows:Value&gt;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>http://data.europa.eu/r5r/<span class="nt">&lt;/ows:Value&gt;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>http://www.w3.org/ns/dcat#<span class="nt">&lt;/ows:Value&gt;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>http://www.w3.org/ns/dcat#core<span class="nt">&lt;/ows:Value&gt;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>https://semiceu.github.io/DCAT-AP/releases/2.2.0-hvd/<span class="nt">&lt;/ows:Value&gt;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="nt">&lt;ows:Value&gt;</span>https://w3id.org/mobilitydcat-ap<span class="nt">&lt;/ows:Value&gt;</span>
+</span></code></pre></div>
+<h2 id="usage-in-ogc-api-records">Usage in OGC API Records</h2>
+<p>For the time being, OGC API Records provides a simplified DCAT output (based on the index document). </p>
+<h2 id="dcat-validation">DCAT validation</h2>
+<p>The DCAT validation can be done using online validation tool:</p>
+<ul>
+<li>https://www.itb.ec.europa.eu/shacl/dcat-ap/upload</li>
+</ul>
+<p>Depending on the target DCAT profile to use, it may be required to build proper ISO template and metadata record containing all required fields. Usually profiles are adding constraints for usage of specific vocabularies and fields (eg. <a href="https://semiceu.github.io/DCAT-AP/releases/2.2.0-hvd/#controlled-vocabularies-to-be-used">for High Value datasets, specific vocabularies are defined for categories, license, applicable legislations, ...</a>).</p>
+<h2 id="mapping-considerations">Mapping considerations</h2>
+<h3 id="items-under-discussion">Items under discussion</h3>
+<p>The mapping is done from ISO19115-3 to DCAT. The mapping may not cover all usages and may be adapted. This can be done in the <code>iso19115-3.2018</code> schema plugin in the <code>formatter/dcat*</code> XSLT files.</p>
+<p>Some points under discussion are:</p>
+<h4 id="object-vs-reference">Object vs Reference:</h4>
+<ul>
+<li>Should we use object or reference for some fields (eg. contact, organisation, ...)?</li>
+<li>What should be the reference URI?</li>
+<li>Where is defined the reference URI in ISO?</li>
+</ul>
+<p>eg.</p>
+<ul>
+<li>for the CatalogRecord reference URI is the <code>metadataLinkage</code> or the <code>metadataIdentifier</code>.</li>
+<li>for the Resource reference URI is the first resource identifier or the CatalogRecord reference URI with <code>#resource</code> suffix.</li>
+<li>for an organisation, the URI will be the first value in the following sequence:</li>
+</ul>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>(cit:partyIdentifier/*/mcc:code/*/text(),
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cit:contactInfo/*/cit:onlineResource/*/cit:linkage/gco:CharacterString/text(),
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>cit:name/gcx:Anchor/@xlink:href,
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>@uuid)[1]
+</span></code></pre></div>
+<h4 id="distribution-model-in-dcat-and-iso">Distribution model in DCAT and ISO</h4>
+<p>In DCAT, a number of properties from the dataset are also defined in the distribution elements.
+In ISO, an option could be to use multiple transfer options element to create multiple distribution elements with more detailed information in DCAT (eg. transfer size).</p>
+<p>In the mapping, should we repeat all the information about the dataset? Should we recommend to use multiple transfer options element in ISO?</p>
+<h4 id="no-equivalent-field-in-iso">No equivalent field in ISO</h4>
+<p>eg. Where to store <code>spdx:checksum</code> in ISO? Could be considered as an online resource id attribute as the checksum uniquely identify the resource.</p>
+<h4 id="associated-resources">Associated resources</h4>
+<p>Links between resources are not always bidirectional so using the associated API would allow to populate more relations.
+This is also mitigated when the complete RDF graph of the catalogue is retrieved as it will provide relations from all records.</p>
+<h3 id="eu-dcat-ap-high-value-datasets">EU DCAT AP High Value Datasets</h3>
+<p>When encoding in ISO datasets in the context of DCAT HVD, consider encoding the following properties:</p>
+<ul>
+<li>Add a keyword pointing to the legislation <a href="http://data.europa.eu/eli/reg_impl/2023/138/oj">http://data.europa.eu/eli/reg_impl/2023/138/oj</a></li>
+<li>Add at least one keyword for the <code>dcatap:hvdCategory</code> from the <a href="https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/high-value-dataset-category">High-value dataset categories vocabulary</a></li>
+</ul>
+<p>See <a href="https://semiceu.github.io/DCAT-AP/releases/2.2.0-hvd/">DCAT AP HVD specification</a> for other requirements.</p>
+<h3 id="eu-dcat-mobility">EU DCAT mobility</h3>
+<p>When encoding in ISO datasets in the context of DCAT Mobility, consider encoding the following properties:</p>
+<ul>
+<li><code>mobilitydcatap:mobilityTheme</code> (mandatory) is encoded as a keyword from the <a href="https://w3id.org/mobilitydcat-ap/mobility-theme">mobility theme vocabulary</a></li>
+<li><code>mobilitydcatap:georeferencingMethod</code> (recommended) is encoded as a keyword from the <a href="https://w3id.org/mobilitydcat-ap/georeferencing-method/">mobility georeferencing method vocabulary</a></li>
+<li><code>mobilitydcatap:networkCoverage</code> (recommended) is encoded as a keyword from the <a href="https://w3id.org/mobilitydcat-ap/network-coverage">mobility network coverage vocabulary</a></li>
+<li><code>mobilitydcatap:transportMode</code> (recommended) is encoded as a keyword from the <a href="https://w3id.org/mobilitydcat-ap/transport-mode">mobility transport mode vocabulary</a></li>
+</ul>
+<p>See <a href="https://mobilitydcat-ap.github.io/mobilityDCAT-AP/releases/">DCAT AP Mobility specification</a> for other requirements.</p>
+<h3 id="semic-conversion-compared-to-geonetwork-conversion">SEMIC conversion compared to GeoNetwork conversion</h3>
+<p>The main differences between the 2 conversions is that the GeoNetwork conversion <strong>starts from ISO19115-3 instead of ISO19139</strong> (to better support additional information provided in ISO19115-3 eg. date lifecycle, party identifiers and citation in data quality, feature catalogue, additional documentation, portrayal sections).  <strong>The conversion to GeoDCAT-AP is done as an extension of DCAT-AP which extends the core W3C DCAT</strong> for easier customization and extension. This allows non EU countries to also use the base DCAT conversion. The conversion is less linear and easier to extend or customize.</p>
+<p>SEMIC conversion parameters <code>core</code>, <code>extended</code>, <code>include-deprecated</code> are not available in the GeoNetwork conversion which focus on version 3 of GeoDCAT-AP.</p>
+<p>Some of the differences in the GeoNetwork conversion are:</p>
+<ul>
+<li>CatalogRecord / <code>dct:identifier</code> is prefixed with the code space if defined.</li>
+<li>CatalogRecord / <code>dct:title</code> and <code>dct:description</code> are set at CatalogRecord level and at the Resource level</li>
+<li>Resource / First resource identifier is used for <code>dct:identifer</code> (MobilityDCAT restrict it to 0..1), then additional ones are encoded in <code>adms:identifier</code></li>
+<li>Resource / <code>dct:spatial</code> is only encoded using a <code>dcat:bbox</code> in GeoJSON (instead of WKT and GML and GeoJson and the <code>locn:geometry</code> which was kept for backward compatibility with GeoDCAT-AP v1.*)</li>
+<li>Resource / <code>dct:temporal</code> is only encoded using a <code>dcat:startDate</code> and <code>dcat:endDate</code> (and do not add same information in <code>schemas:startDate</code> and <code>schemas:endDate</code> which was kept for backward compatibility with GeoDCAT-AP v1.*)</li>
+<li>Portrayal, specification, report online link are encoded using <code>foaf:page</code> instead of <code>foaf:landingPage</code></li>
+<li><code>prov:qualifiedAttribution</code> element are not created because <code>dcat:creator|publisher|contactPoint|..</code> already provide the same information.</li>
+<li>Keyword / When encoded with <code>Anchor</code>, <code>dcat:theme</code> encoded with only a reference in SEMIC conversion and using <code>skos:Concept</code> in the GeoNetwork conversion (see discussion point above)</li>
+</ul>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&lt;dcat:theme</span><span class="w"> </span><span class="na">rdf:resource=</span><span class="s">&quot;https://metawal.wallonie.be/thesaurus/theme-geoportail-wallon#SubThemesGeoportailWallon/5099&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>vs
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">&lt;dcat:theme&gt;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&lt;skos:Concept</span><span class="w"> </span><span class="na">rdf:about=</span><span class="s">&quot;https://metawal.wallonie.be/thesaurus/theme-geoportail-wallon#SubThemesGeoportailWallon/5099&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">&lt;skos:prefLabel</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">&quot;fre&quot;</span><span class="nt">&gt;</span>Données<span class="w"> </span>de<span class="w"> </span>base<span class="w"> </span>(autre)<span class="nt">&lt;/skos:prefLabel&gt;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">&lt;/skos:Concept&gt;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nt">&lt;/dcat:theme&gt;</span>
+</span></code></pre></div>
+<p>Additional properties supported:</p>
+<ul>
+<li>CatalogRecord / <code>dct:issued</code> is added if exists in the metadata (added in ISO19115-3) </li>
+<li>CatalogRecord / <code>dct:language</code> is added if exists </li>
+<li>CatalogRecord / <code>cnt:characterEncoding</code> is added if exists</li>
+<li>Resource / <code>graphicOverview</code> is encoded as <code>foaf:page</code></li>
+<li>Resource / Associated resources</li>
+<li>Source dataset are encoded using <code>dct:source</code></li>
+<li>Associated resource are encoded using <code>dct:relation</code> and subtypes (eg. <code>isPartOf</code>) </li>
+<li>Party identifier (added in ISO19115-3) are used for <code>rdf:about</code> attribute for individual or organization</li>
+</ul>
+<p>Technical differences:</p>
+<ul>
+<li><code>normalize-space</code> is not applied to <code>abstract</code> or <code>lineage</code> (which lose the line breaks and basic formatting) </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../q-search/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Q Search">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Q Search
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../z39-50/" class="md-footer__link md-footer__link--next" aria-label="Next: Z39-50">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Z39-50
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <!--
+  Copyright (c) 2016-2022 Martin Donath <martin.donath@squidfunk.com>
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Copyright and theme information -->
+<div class="md-copyright">
+  
+  <span class="md-copyright__highlight">
+    Copyright &copy; 2001 - 2024 FAO-UN and others
+  </span>
+  
+  
+  &mdash; Made by the
+  <a
+          href="https://geonetwork-opensource.org/"
+          target="_blank" rel="noopener"
+  >GeoNetwork Community</a>,
+  built with
+  <a
+          href="https://squidfunk.github.io/mkdocs-material/"
+          target="_blank" rel="noopener"
+  >
+    Material for MkDocs
+  </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/geonetwork" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/_/geonetwork" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1zm0-204.3h-66.1v60.7h66.1zm78.2 144.8H362v59.4h66.1zm-156.3-72.1h-66.1v60.1h66.1zm78.1 0h-66.1v60.1h66.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1zm78.1 0h-66.1v59.4h66.1zm-78.1-72.1h-66.1v60.1h66.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://geonetwork-opensource.org/" target="_blank" rel="noopener" title="GeoNetwork Website" class="md-social__link">
+      <?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="301px" viewBox="0 0 300 301" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>gn_logo</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="GNlogo" transform="translate(-157.000000, -1.000000)" fill-rule="nonzero">
+            <g id="Group" transform="translate(157.000000, 0.105590)">
+                <g id="Logo" transform="translate(0.000000, 3.000000)">
+                    <path d="M212.641304,294.371739 L212.648758,294.371739 C211.621118,289.141304 184.624845,288.163043 152.745652,288.163043 C107.719565,288.163043 69.957764,281.73354 59.7475155,273.835714 L59.7624224,273.811491 C43.4925466,261.290683 29.876087,245.535093 19.7431677,227.549068 C27.2031056,240.93913 83.907764,251.501553 152.746584,251.501553 C177.136025,251.501553 199.39472,253.253106 216.299068,256.084472 C236.027329,259.390062 248.462422,264.279503 248.462422,269.645963 C248.462422,270.981056 247.693789,272.418634 246.235714,273.668012 L246.233851,274.000621 C235.996584,281.941304 224.719565,287.895652 212.641304,294.371739 Z M274.503727,242.340373 C274.503727,243.565528 274.131056,244.685404 273.408075,245.707453 C284.601242,231.096894 293.863043,214.198137 299.207143,196.107764 C299.464286,195.332609 299.591925,194.480124 299.591925,193.693789 C299.591925,176.150311 233.848137,161.931056 152.745652,161.931056 C69.4229814,161.931056 1.80838509,147.961491 1.80838509,130.421739 L1.79720497,130.077019 C0.69689441,137.475466 0.126708075,145.048137 0.126708075,152.751242 C0.126708075,163.990062 1.34161491,174.948447 3.64658385,185.495031 C6.00745342,196.595031 35.2006211,206.095342 77.6534161,211.368634 C99.7108696,214.112422 125.36646,215.536025 152.745652,215.536025 C219.988509,215.536025 274.503727,227.537888 274.503727,242.340373 Z M183.136025,88.9462733 C184.804658,105.557143 185.843478,123.795652 186.11646,143.003106 C251.136335,139.733851 299.564907,127.125466 299.564907,112.063043 C299.564907,111.274845 299.465217,110.480124 299.207143,109.709627 C293.730745,91.05 284.782919,73.8791925 273.115528,58.9350932 C274.025776,60.2552795 274.502795,61.6080745 274.502795,62.9822981 C274.503727,75.4770186 235.679814,85.9742236 183.136025,88.9462733 Z M152.67205,54.1462733 C144.200311,54.1462733 136.35559,53.9515528 128.525776,53.5779503 C126.538509,64.202795 124.82795,76.1189441 123.537578,89.0086957 C70.4180124,86.1270186 31.0071429,75.5673913 31.0071429,62.9804348 C31.0071429,61.6015528 31.4785714,60.2431677 32.3916149,58.9164596 C20.6487578,73.9555901 11.5462733,91.2186335 6.07919255,110.013354 C5.88074534,110.692547 5.86118012,111.374534 5.86118012,112.06118 C5.86118012,129.601863 72.6959627,143.82205 152.67205,143.82205 L152.67205,54.1462733 Z M209.906832,14.6962733 C209.906832,11.9813665 205.993789,9.46397516 199.340683,7.40590062 L199.348137,7.38167702 C184.654658,2.67950311 168.998758,0.136024845 152.745652,0.136024845 C136.015528,0.136024845 119.920807,2.8257764 104.851863,7.8 L104.859317,7.82049689 C98.9953416,9.7984472 95.5863354,12.1611801 95.5863354,14.6962733 C95.5863354,21.6447205 121.174845,27.2822981 152.746584,27.2822981 C184.311801,27.2822981 209.906832,21.6437888 209.906832,14.6962733 Z" id="Shape"  fill="#BABABA"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.tracking", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.indexes", "navigation.footer", "header.autohide", "content.tabs.link", "content.code.copy", "content.action.view", "content.action.edit", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "stable", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
