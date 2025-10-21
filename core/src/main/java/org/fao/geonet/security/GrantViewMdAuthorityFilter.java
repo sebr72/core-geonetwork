@@ -83,7 +83,8 @@ public class GrantViewMdAuthorityFilter extends GenericFilterBean {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
-        AnonymousAccessLink authority = anonymousAccessLinkRepository.findOneByHash(hash);
+        // AnonymousAccessLink authority = anonymousAccessLinkRepository.findOneByHash(hash);
+        AnonymousAccessLink authority =anonymousAccessLinkRepository.findAll().stream().filter(a -> a.getHash().equals(hash)).findFirst().orElse(null);
         if (authority == null) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
