@@ -38,11 +38,19 @@ public class AnonymousAccessLinkHashConverter implements AttributeConverter<Stri
 
 	@Override
 	public String convertToDatabaseColumn(String attribute) {
-		return standardPBEStringEncryptor.encrypt(attribute);
+		try {
+			return standardPBEStringEncryptor.encrypt(attribute);
+		} catch (Throwable e){
+			return "";
+		}
 	}
 
 	@Override
 	public String convertToEntityAttribute(String dbData) {
-		return standardPBEStringEncryptor.decrypt(dbData);
+		try {
+			return standardPBEStringEncryptor.decrypt(dbData);
+		} catch (Throwable e){
+			return "";
+		}
 	}
 }
