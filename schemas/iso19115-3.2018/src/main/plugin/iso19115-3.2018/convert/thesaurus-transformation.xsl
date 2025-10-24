@@ -297,13 +297,14 @@
             <publication date="{normalize-space($thesaurus/modifiedDate)}"/>
           </xsl:variable>
 
-          <xsl:for-each-group select="$thesaurusDates[@date != '']" group-by="@date">
+          <xsl:for-each-group select="$thesaurusDates[@date != '']" group-by="name()">
             <xsl:sort select="@date" order="descending"/>
             <cit:date>
               <cit:CI_Date>
                 <cit:date>
-                  <xsl:element name="{if (contains(current-grouping-key(), 'T')) then 'gco:DateTime' else 'gco:Date'}">
-                    <xsl:value-of select="current-grouping-key()" />
+                  <!-- here we should take the youngest date, not the first... awaiting this, we avoid gemet-theme (the old) inconsistency to cause xsd validation  error-->
+                  <xsl:element name="{if (contains(@date[1], 'T')) then 'gco:DateTime' else 'gco:Date'}">
+                    <xsl:value-of select="@date[1]" />
                   </xsl:element>
                 </cit:date>
                 <cit:dateType>
