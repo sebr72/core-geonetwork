@@ -185,7 +185,7 @@
                   <xsl:otherwise>
                     <gco:CharacterString>
                       <xsl:value-of
-                        select="$keyword/values/value[@language = $listOfLanguage[1]]/text()"></xsl:value-of>
+                        select="(for $lang in $listOfLanguage return $keyword/values/value[@language = $lang][normalize-space(.) != ''])[1]/text()"></xsl:value-of>
                     </gco:CharacterString>
                   </xsl:otherwise>
                 </xsl:choose>
