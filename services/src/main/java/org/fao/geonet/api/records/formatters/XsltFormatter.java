@@ -25,12 +25,16 @@ package org.fao.geonet.api.records.formatters;
 
 import org.fao.geonet.ApplicationContextHolder;
 import org.fao.geonet.constants.Geonet;
+import org.fao.geonet.domain.Group;
 import org.fao.geonet.kernel.SchemaManager;
 import org.fao.geonet.kernel.search.JSONLocCacheLoader;
 import org.fao.geonet.kernel.setting.SettingManager;
+import org.fao.geonet.kernel.setting.Settings;
+import org.fao.geonet.repository.GroupRepository;
 import org.fao.geonet.utils.Log;
 import org.fao.geonet.utils.Xml;
 import org.jdom.Element;
+import org.jdom.JDOMException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -44,6 +48,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.fao.geonet.api.records.formatters.SchemaLocalizations.loadSchemaLocalizations;
 
@@ -62,6 +67,12 @@ import static org.fao.geonet.api.records.formatters.SchemaLocalizations.loadSche
  */
 @Component
 public class XsltFormatter implements FormatterImpl {
+
+    @Autowired
+    GroupRepository groupRepository;
+
+    @Autowired
+    SettingManager settingManager;
 
     private final Map<String, Element> translationElements =  new HashMap<>();
 
@@ -174,6 +185,9 @@ public class XsltFormatter implements FormatterImpl {
 
         // Add metadata information (ie. harvested, categories, schema, dates, ...)
         Element info = fparams.metadataInfo.asXml();
+
+        enrichTransformSourceWithGroupLogoOrSourceId(fparams, info);
+
         // metadataInfo contains the XML in data which is not needed
         info.removeChild("data");
         root.addContent(new Element("info")
@@ -217,5 +231,21 @@ public class XsltFormatter implements FormatterImpl {
         return transformed.startsWith("<textResponse") ?
             Xml.loadString(transformed, false).getText() :
             transformed;
+    }
+
+    private void enrichTransformSourceWithGroupLogoOrSourceId(FormatterParams fparams, Element info) throws JDOMException {
+        Element sourceInfo = (Element) Xml.selectNodes(info, "sourceinfo").get(0);
+        Element grouplogo = new Element("grouplogo");
+        sourceInfo.addContent(grouplogo);
+        if (!settingManager.getValueAsBool(Settings.SYSTEM_PREFER_GROUP_LOGO, true)) {
+            grouplogo.setText("../images/logos/" + fparams.metadataInfo.getSourceInfo().getSourceId() + ".png");
+            return;
+        }
+        if (fparams.metadataInfo.getSourceInfo().getGroupOwner() != null) {
+            Optional<Group> group = groupRepository.findById(fparams.metadataInfo.getSourceInfo().getGroupOwner());
+            if (group.isPresent() && group.get().getLogo() != null && !group.get().getLogo().isEmpty()) {
+                grouplogo.setText("../images/harvesting/" + group.get().getLogo());
+            }
+        }
     }
 }
