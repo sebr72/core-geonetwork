@@ -222,7 +222,7 @@
               </h2>
               <img class="gn-source-logo"
                    alt="{$schemaStrings/logo}"
-                   src="{$nodeUrl}../images/logos/{$source}.png" />
+                   src="{$nodeUrl}{$grouplogo}" />
             </section>
 
             <xsl:if test="$isSocialbarEnabled">
