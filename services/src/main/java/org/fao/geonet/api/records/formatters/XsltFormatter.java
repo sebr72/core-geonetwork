@@ -122,6 +122,30 @@ public class XsltFormatter implements FormatterImpl {
 
     public String format(FormatterParams fparams) throws Exception {
 
+        Element root = buildTransformationSource(fparams);
+
+        // Create a map of request parameters to be passed to the XSL transformation
+        // For a formatter to retrieve a request parameter
+        // an xsl:param should be defined
+        // eg. <xsl:param name="view"/>
+        Map<String, Object> requestParameters = new HashMap<String, Object>();
+
+        if (fparams.webRequest != null) {
+            Iterator<String> iterator = fparams.webRequest.getParameterMap().keySet().iterator();
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                requestParameters.put(key, fparams.webRequest.getParameterMap().get(key));
+            }
+        }
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Xml.transform(root, fparams.viewFile, requestParameters, baos);
+        String transformed = baos.toString(StandardCharsets.UTF_8);
+        return transformed.startsWith("<textResponse") ?
+            Xml.loadString(transformed, false).getText() :
+            transformed;
+    }
+
+    Element buildTransformationSource(FormatterParams fparams) throws Exception {
         String lang = fparams.config.getLang(fparams.context.getLanguage());
 
         Element root = new Element("root");
@@ -208,26 +232,7 @@ public class XsltFormatter implements FormatterImpl {
                 schemas.addContent(e);
             }
         }
-
-        // Create a map of request parameters to be passed to the XSL transformation
-        // For a formatter to retrieve a request parameter
-        // an xsl:param should be defined
-        // eg. <xsl:param name="view"/>
-        Map<String, Object> requestParameters = new HashMap<String, Object>();
-
-        if (fparams.webRequest != null) {
-            Iterator<String> iterator = fparams.webRequest.getParameterMap().keySet().iterator();
-            while (iterator.hasNext()) {
-                String key = iterator.next();
-                requestParameters.put(key, fparams.webRequest.getParameterMap().get(key));
-            }
-        }
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Xml.transform(root, fparams.viewFile, requestParameters, baos);
-        String transformed = baos.toString(StandardCharsets.UTF_8);
-        return transformed.startsWith("<textResponse") ?
-            Xml.loadString(transformed, false).getText() :
-            transformed;
+        return root;
     }
 
     private void enrichTransformSourceWithGroupLogoOrSourceId(FormatterParams fparams, Element info) throws JDOMException {
