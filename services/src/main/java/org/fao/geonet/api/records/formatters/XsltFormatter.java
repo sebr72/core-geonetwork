@@ -125,9 +125,6 @@ public class XsltFormatter implements FormatterImpl {
         String lang = fparams.config.getLang(fparams.context.getLanguage());
 
         Element root = new Element("root");
-
-        SettingManager settingManager = ApplicationContextHolder.get().getBean(SettingManager.class);
-
         root.addContent(new Element("lang").setText(fparams.context.getLanguage()));
         root.addContent(new Element("url").setText(fparams.url));
 
