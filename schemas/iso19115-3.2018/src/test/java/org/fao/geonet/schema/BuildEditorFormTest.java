@@ -39,12 +39,14 @@ import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.Map;
+import org.jdom.Content;
+import org.jdom.Namespace;
 
 import static org.fao.geonet.schema.TestSupport.getResource;
 
 public class BuildEditorFormTest {
 
-	private static final boolean GENERATE_EXPECTED_FILE = false;
+	private static final boolean GENERATE_EXPECTED_FILE = true;
 
 	private static Field resolverMapField;
 
@@ -82,6 +84,88 @@ public class BuildEditorFormTest {
 		String actual = xmlOutputter.outputString(editorForm);
 
 		TestSupport.assertGeneratedDataByteMatchExpected("raw-UpperRhineCastles-editor-form.xml", actual, GENERATE_EXPECTED_FILE);
+	}
+
+	@Test
+	public void rawUpperRhineCastlesEditWithReport() throws Exception {
+		Path xslFile = getResource("gn-site/xslt/ui-metadata/edit/edit.xsl");
+		Path xmlFile = getResource("raw-UpperRhineCastles-inflated-for-edition.xml");
+		Element inflatedMd = Xml.loadFile(xmlFile);
+		Element request = inflatedMd.getChild("request");
+		if (request != null) {
+			request.removeChildren("withvalidationerrors");
+			request.removeChildren("showvalidationerrors");
+			int insertIndex = Math.min(10, request.getContentSize());
+			request.addContent(insertIndex, new Element("withvalidationerrors").setText("true"));
+			request.addContent(insertIndex + 1, new Element("showvalidationerrors").setText("true"));
+		}
+		Element report = Xml.loadFile(getResource("report.xml"));
+		Element mdMetadata = inflatedMd.getChild("MD_Metadata",
+				Namespace.getNamespace("mdb", "http://standards.iso.org/iso/19115/-3/mdb/2.0"));
+		if (mdMetadata == null) mdMetadata = inflatedMd;
+		int lastGeonetAttributeIdx = mdMetadata.getContentSize();
+		for (int i = mdMetadata.getContentSize() - 1; i >= 0; i--) {
+			Content child = mdMetadata.getContent(i);
+			if (child instanceof Element) {
+				Element childEl = (Element) child;
+				if ("http://www.fao.org/geonetwork".equals(childEl.getNamespaceURI())
+						&& "attribute".equals(childEl.getName())) {
+					lastGeonetAttributeIdx = i;
+					break;
+				}
+			}
+		}
+		mdMetadata.addContent(lastGeonetAttributeIdx, (Element) report.clone());
+
+		// Set lang2chars to "fr"
+		Element gui = inflatedMd.getChild("gui");
+		if (gui == null) {
+			gui = new Element("gui");
+			inflatedMd.addContent(0, gui);
+		}
+		Element lang2chars = gui.getChild("lang2chars");
+		if (lang2chars == null) {
+			lang2chars = new Element("lang2chars");
+			gui.addContent(lang2chars);
+		}
+		lang2chars.setText("en");
+
+		Element editorForm = Xml.transform(inflatedMd, xslFile);
+
+		// Extract only the div with class="gn-validation-report"
+		// Use recursive search since HTML elements have no namespace
+		Element validationReport = findDivByClass(editorForm, "gn-validation-report");
+
+		if (validationReport != null) {
+			XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat().setLineSeparator("\n"));
+			String actual = xmlOutputter.outputString(validationReport);
+
+			TestSupport.assertGeneratedDataByteMatchExpected("control.xml", actual, GENERATE_EXPECTED_FILE);
+		} else {
+			throw new AssertionError("No validation report div found in the editor form");
+		}
+	}
+
+	private static Element findDivByClass(Element element, String className) {
+		// Check if current element is a div with the target class
+		if ("div".equals(element.getName()) && element.getNamespace().getURI().isEmpty()) {
+			String classAttr = element.getAttributeValue("class");
+			if (classAttr != null && classAttr.contains(className)) {
+				return element;
+			}
+		}
+
+		// Search in children recursively
+		@SuppressWarnings("unchecked")
+		java.util.List<Element> children = element.getChildren();
+		for (Element child : children) {
+			Element found = findDivByClass(child, className);
+			if (found != null) {
+				return found;
+			}
+		}
+
+		return null;
 	}
 
 	private static Path addRequiredSchemasAndDisableConflictingOne() throws URISyntaxException {
