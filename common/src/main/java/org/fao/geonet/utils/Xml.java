@@ -32,6 +32,12 @@ import net.sf.json.xml.XMLSerializer;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.Controller;
 import net.sf.saxon.FeatureKeys;
+import net.sf.saxon.TransformerFactoryImpl;
+import net.sf.saxon.expr.Expression;
+import net.sf.saxon.expr.StaticContext;
+import net.sf.saxon.functions.FunctionLibrary;
+import net.sf.saxon.om.StructuredQName;
+import net.sf.saxon.trans.XPathException;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
@@ -500,6 +506,38 @@ public final class Xml {
      * Add a geonet-force-xml parameter to force the formatting to be xml.
      * The preferred method is to define it using xsl:output.
      */
+    public static class MyExtensionBinder implements FunctionLibrary {
+
+        private final FunctionLibrary delegate;
+
+        public MyExtensionBinder(FunctionLibrary delegate) {
+            this.delegate = delegate;
+        }
+
+        @Override
+        public boolean isAvailable(StructuredQName structuredQName, int i) {
+            if (structuredQName.getClarkName().contains("org.fao.geonet")) {
+                return delegate.isAvailable(structuredQName, i);
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public Expression bind(StructuredQName structuredQName, Expression[] expressions, StaticContext staticContext) throws XPathException {
+            if (structuredQName.getClarkName().contains("org.fao.geonet")) {
+                return delegate.bind(structuredQName, expressions, staticContext);
+            } else {
+                return null;
+            }
+        }
+
+        @Override
+        public FunctionLibrary copy() {
+            return delegate.copy();
+        }
+    }
+
     public static void
     transform(Element xml, Path styleSheetPath, Result result, Map<String, Object> params) throws Exception {
         NioPathHolder.setBase(styleSheetPath);
@@ -511,6 +549,7 @@ public final class Xml {
             // stylesheet so switch it off but trap any exceptions because this
             // code is run on transformers other than saxon
             TransformerFactory transFact = TransformerFactoryFactory.getTransformerFactory();
+            ((TransformerFactoryImpl)transFact).getConfiguration().setExtensionBinder("java", new MyExtensionBinder(((TransformerFactoryImpl)transFact).getConfiguration().getExtensionBinder("java")));
             transFact.setURIResolver(new JeevesURIResolver());
             try {
                 transFact.setAttribute(FeatureKeys.VERSION_WARNING, false);
