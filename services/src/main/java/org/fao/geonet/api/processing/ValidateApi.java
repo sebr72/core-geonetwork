@@ -38,6 +38,7 @@ import org.fao.geonet.api.ApiUtils;
 import org.fao.geonet.api.processing.report.MetadataValidationProcessingReport;
 import org.fao.geonet.api.processing.report.SimpleMetadataProcessingReport;
 import org.fao.geonet.api.processing.report.registry.IProcessingReportRegistry;
+import org.fao.geonet.api.tools.i18n.LanguageUtils;
 import org.fao.geonet.constants.Geonet;
 import org.fao.geonet.domain.AbstractMetadata;
 import org.fao.geonet.domain.MetadataValidation;
@@ -55,6 +56,7 @@ import org.fao.geonet.kernel.setting.SettingManager;
 import org.fao.geonet.kernel.setting.Settings;
 import org.fao.geonet.repository.MetadataValidationRepository;
 import org.fao.geonet.kernel.search.index.BatchOpsMetadataReindexer;
+import org.fao.geonet.util.XslUtil;
 import org.jdom.Element;
 import org.jdom.filter.ElementFilter;
 import org.jdom.filter.Filter;
@@ -131,6 +133,8 @@ public class ValidateApi {
     MBeanExporter mBeanExporter;
     @Autowired
     protected XmlSerializer xmlSerializer;
+    @Autowired
+    LanguageUtils languageUtils;
 
     private final ArrayDeque<SelfNaming> mAnalyseProcesses = new ArrayDeque<>(NUMBER_OF_SUBSEQUENT_PROCESS_MBEAN_TO_KEEP);
 
@@ -188,6 +192,8 @@ public class ValidateApi {
     ) throws Exception {
         UserSession userSession = ApiUtils.getUserSession(session);
 
+        String preferredTwoCharLangCode = XslUtil.twoCharLangCode(languageUtils.parseAcceptLanguage(request.getLocales()).getLanguage());
+
         MetadataValidationProcessingReport report =
             new MetadataValidationProcessingReport();
         try {
@@ -219,8 +225,8 @@ public class ValidateApi {
                             Element schemaTronReport = validationPair.one();
                             if (schemaTronReport != null) {
                                 restructureReportToHavePatternRuleHierarchy(schemaTronReport);
-                                report.addAllReportsMatchingRequirement(record, schemaTronReport, SchematronRequirement.REPORT_ONLY);
-                                report.addAllReportsMatchingRequirement(record, schemaTronReport, SchematronRequirement.REQUIRED);
+                                report.addAllReportsMatchingRequirement(record, schemaTronReport, SchematronRequirement.REPORT_ONLY, preferredTwoCharLangCode);
+                                report.addAllReportsMatchingRequirement(record, schemaTronReport, SchematronRequirement.REQUIRED, preferredTwoCharLangCode);
                                 if (!report.getMetadataErrors().containsKey(record.getId())) {
                                     report.addValidMetadata(record);
                                     new RecordValidationTriggeredEvent(record.getId(), ApiUtils.getUserSession(request.getSession()).getUserIdAsInt(), "1").publish(applicationContext);

@@ -306,12 +306,13 @@ public class MetadataValidationProcessingReport extends MetadataProcessingReport
      * It first restructures the schematron report to have a more hierarchical structure, then
      * extracts validation messages and adds them to the report.</p>
      *
-     * @param record The metadata record being validated
+     * @param record           The metadata record being validated
      * @param schemaTronReport The XML validation report containing validation results
-     * @param requirement The requirement level to process (REQUIRED for errors, REPORT_ONLY for warnings)
+     * @param requirement      The requirement level to process (REQUIRED for errors, REPORT_ONLY for warnings)
+     * @param preferredTwoCharLangCode Preferred diagnosis language code in two-character format (e.g., "en", "fr")
      * @throws JDOMException If there is an error processing the XML validation report
      */
-    public synchronized void addAllReportsMatchingRequirement(AbstractMetadata record, Element schemaTronReport, SchematronRequirement requirement) throws JDOMException {
+    public synchronized void addAllReportsMatchingRequirement(AbstractMetadata record, Element schemaTronReport, SchematronRequirement requirement, String preferredTwoCharLangCode) throws JDOMException {
         List<Namespace> namespaces = new ArrayList<>();
         namespaces.add(Namespace.getNamespace("geonet", "http://www.fao.org/geonetwork"));
         namespaces.add(Namespace.getNamespace("svrl", "http://purl.oclc.org/dsdl/svrl"));
@@ -358,11 +359,8 @@ public class MetadataValidationProcessingReport extends MetadataProcessingReport
                 Element patternElem = (Element) patternObject;
                 String patternTitle = patternElem.getAttributeValue("name");
 
-                List<?> messages = Xml.selectNodes(
-                    patternElem,
-                    "svrl:fired-rule/svrl:failed-assert/svrl:text[normalize-space(.) != '']",
-                    namespaces
-                );
+                List<?> messages = extractFailureMessages(preferredTwoCharLangCode, patternElem, namespaces);
+
 
                 for (Object messageObject : messages) {
                     String message = Xml.selectString((Element) messageObject, "normalize-space(.)", namespaces);
@@ -391,5 +389,29 @@ public class MetadataValidationProcessingReport extends MetadataProcessingReport
                     SchematronRequirement.REQUIRED);
             }
         }
+    }
+
+    private static List<?> extractFailureMessages(String preferredTwoCharLangCode, Element patternElem, List<Namespace> namespaces) throws JDOMException {
+        List<?> diagnosticsInPreferredLanguage = Xml.selectNodes(
+                patternElem,
+                String.format("svrl:fired-rule/svrl:failed-assert/svrl:diagnostic-reference[normalize-space(.) != '' and @xml:lang = '%s']", preferredTwoCharLangCode),
+                namespaces
+        );
+        if (!diagnosticsInPreferredLanguage.isEmpty()) {
+            return diagnosticsInPreferredLanguage;
+        }
+        List<?> diagnosticsInAnyLanguage = Xml.selectNodes(
+                patternElem,
+                "svrl:fired-rule/svrl:failed-assert/svrl:diagnostic-reference[normalize-space(.) != '']",
+                namespaces
+        );
+        if (!diagnosticsInPreferredLanguage.isEmpty()) {
+            return List.of(diagnosticsInAnyLanguage.get(0));
+        }
+        return Xml.selectNodes(
+                patternElem,
+            "svrl:fired-rule/svrl:failed-assert/svrl:text[normalize-space(.) != '']",
+                namespaces
+        );
     }
 }
