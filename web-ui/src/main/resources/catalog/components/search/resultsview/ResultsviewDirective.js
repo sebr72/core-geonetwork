@@ -219,17 +219,7 @@
 
           scope.abstractBriefMaker = function (resourceAbstract) {
             if (resourceAbstract) {
-              var abstractParagraphs = resourceAbstract.split("\n");
-              var abstractBrief = "";
-              for (var index = 0; index < abstractParagraphs.length; index++) {
-                var abstractBrief = abstractBrief + abstractParagraphs[index] + "\n";
-                if (abstractBrief.length > 50) {
-                  break;
-                }
-              }
-
-              //remove the last line break character
-              return abstractBrief.substring(0, abstractBrief.length - 1);
+              return resourceAbstract.replaceAll("\n", " ");
             }
           };
 
