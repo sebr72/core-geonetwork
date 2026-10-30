@@ -11,6 +11,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.Templates;
@@ -30,18 +31,11 @@ public class CachingTransformerFactory extends TransformerFactoryImpl implements
      */
     protected static final Logger logger =
         LogManager.getLogger(CachingTransformerFactory.class);
-    /**
-     * Active readers count.
-     */
-    static int activeReaders = 0;
-    /**
-     * Active writers count.
-     */
-    static int activeWriters = 0;
+
     /**
      * Map to hold templates cache.
      */
-    private static Map<String, TemplatesCacheEntry> templatesCache = new HashMap<String, TemplatesCacheEntry>();
+    private static final Map<String, TemplatesCacheEntry> templatesCache = new ConcurrentHashMap<>();
 
     /**
      * Clear the stylesheet cache. This is not part of the JAXP TransformerFactoryImpl so users
@@ -49,9 +43,7 @@ public class CachingTransformerFactory extends TransformerFactoryImpl implements
      * broken.
      */
     public void clearCache() {
-        beforeWrite();
         templatesCache.clear();
-        afterWrite();
     }
 
     /**
@@ -135,10 +127,7 @@ public class CachingTransformerFactory extends TransformerFactoryImpl implements
      * @return Templates cache entry for the specified path.
      */
     protected TemplatesCacheEntry read(String absolutePath) {
-        beforeRead();
-        final TemplatesCacheEntry templatesCacheEntry = templatesCache.get(absolutePath);
-        afterRead();
-        return templatesCacheEntry;
+        return templatesCache.get(absolutePath);
     }
 
     /**
@@ -148,49 +137,7 @@ public class CachingTransformerFactory extends TransformerFactoryImpl implements
      * @param templatesCacheEntry templates cache entry to save.
      */
     protected void write(String absolutePath, TemplatesCacheEntry templatesCacheEntry) {
-        beforeWrite();
         templatesCache.put(absolutePath, templatesCacheEntry);
-        afterWrite();
-    }
-
-    /**
-     * Invoked just before reading, waits until reading is allowed.
-     */
-    protected synchronized void beforeRead() {
-        while (activeWriters > 0)
-            try {
-                wait();
-            } catch (InterruptedException iex) {
-            }
-        ++activeReaders;
-    }
-
-    /**
-     * Invoked just after reading.
-     */
-    protected synchronized void afterRead() {
-        --activeReaders;
-        notifyAll();
-    }
-
-    /**
-     * Invoked just before writing, waits until writing is allowed.
-     */
-    protected synchronized void beforeWrite() {
-        while (activeReaders > 0 || activeWriters > 0)
-            try {
-                wait();
-            } catch (InterruptedException iex) {
-            }
-        ++activeWriters;
-    }
-
-    /**
-     * Invoked just after writing.
-     */
-    protected synchronized void afterWrite() {
-        --activeWriters;
-        notifyAll();
     }
 
     /**
